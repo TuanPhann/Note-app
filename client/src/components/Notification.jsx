@@ -19,17 +19,14 @@ subscription Subscription {
 
 function Notification() {
   const [notification, setNotification] = useState(true);
-  const { contentNotification, setContentNotification } = useState("");
 
   useEffect(() => {
     // subscription
     (async () => {
       const onNext = (data) => {
         /* handle incoming values */
-        const message = data?.data?.notification?.message;
         console.log({ data });
         setNotification(false);
-        setContentNotification(message);
       };
 
       await new Promise((resolve, reject) => {
