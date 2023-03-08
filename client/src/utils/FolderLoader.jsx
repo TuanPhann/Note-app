@@ -6,12 +6,13 @@ export const FolderLoader = async () => {
       folders {
         id
         name
+        createdAt
       }
     }
     `;
 
-  const res = await RequestLoader({ query });
-  const data = await res.json();
+  const data = await RequestLoader({ query });
+  console.log(data);
   return data;
 };
 
@@ -27,13 +28,12 @@ export const AddNewFolder = async (newFolder) => {
   }  
 
   `;
-  const res = await RequestLoader({
+  const data = await RequestLoader({
     query,
     variables: {
       name: newFolder.name,
     },
   });
 
-  const data = await res.json();
   return data;
 };

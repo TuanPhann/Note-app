@@ -8,6 +8,7 @@ import NotificationModel from "../models/NotificationModel.js";
 const pubsub = new PubSub();
 
 export const resolvers = {
+  //conver date
   Date: new GraphQLScalarType({
     name: "Date",
     parseValue(value) {
@@ -18,6 +19,7 @@ export const resolvers = {
     },
   }),
   Query: {
+    //lấy tất cả folder trong DB
     folders: async (parent, args, context) => {
       const folders = await FolderModel.find({
         authorId: context.uid,
@@ -26,12 +28,16 @@ export const resolvers = {
       });
       return folders;
     },
+
+    // lấy ra 1 folder có cùng ID
     folder: async (parent, args) => {
       const foundFolder = await FolderModel.findOne({
         _id: args.folderId,
       });
       return foundFolder;
     },
+
+    // lấy ra note tương ứng với folder
     note: async (parent, args) => {
       const noteId = args.noteId;
       const note = await NoteModel.findById(noteId);
@@ -40,12 +46,15 @@ export const resolvers = {
   },
 
   Folder: {
+    // lấy ra author  tương ứng với folder
     author: async (parent, args) => {
       const author = await AuthorModel.findOne({
         uid: parent.authorId,
       });
       return author;
     },
+
+    //lấy ra tất cả note thuộc folder
     notes: async (parent, args) => {
       const authorId = parent.id;
       const notes = await NoteModel.find({

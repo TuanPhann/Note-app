@@ -1,6 +1,6 @@
 import { URL } from "./Constant";
 
-export const RequestLoader = async (payload) => {
+export const RequestLoader = async (payload, options = {}) => {
   if (localStorage.getItem("accessToken")) {
     const res = await fetch(`${URL}/graphql`, {
       method: "POST",
@@ -8,6 +8,7 @@ export const RequestLoader = async (payload) => {
         "Content-Type": "application/json",
         Accept: "application/json",
         authornization: `Bear ${localStorage.getItem("accessToken")}`,
+        ...options,
       },
       body: JSON.stringify(payload),
     });
@@ -17,7 +18,8 @@ export const RequestLoader = async (payload) => {
         return null;
       }
     }
-    return res;
+    const { data } = await res.json();
+    return data;
   }
   return null;
 };

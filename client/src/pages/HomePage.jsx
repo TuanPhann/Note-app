@@ -8,12 +8,14 @@ import Notification from "../components/Notification";
 
 function HomePage() {
   const { user } = useContext(AppContext);
-  const { data } = useLoaderData();
+  const data = useLoaderData();
   const auth = getAuth();
 
   const handleLogOut = () => {
     auth.signOut();
   };
+
+  console.log(data);
   return (
     <Stack>
       <Group>

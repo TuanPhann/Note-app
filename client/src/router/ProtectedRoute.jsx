@@ -1,11 +1,11 @@
-import { Outlet } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
 
-function ProtectedRoute({ children }) {
+export default function ProtectedRoute({ children }) {
+  console.log({ accessToken: localStorage.getItem("accessToken") });
   if (!localStorage.getItem("accessToken")) {
     return <Navigate to="/login" />;
   }
+
   return <Outlet />;
 }
-
-export default ProtectedRoute;

@@ -32,7 +32,7 @@ function LoginPage() {
   if (localStorage.getItem("accessToken")) {
     return <Navigate to="/" />;
   }
-
+  console.log(123);
   return (
     <Stack>
       <Text style={{ textAlign: "center" }}>WelCome to Note-App</Text>

@@ -16,14 +16,13 @@ export const NoteLoader = async ({ request, params }) => {
     }
     `;
 
-  const res = await RequestLoader({
+  const data = await RequestLoader({
     query,
     variables: {
       folderId: folderId,
     },
   });
 
-  const data = await res.json();
   return data;
 };
 
@@ -38,14 +37,13 @@ export const NoteDetailLoader = async ({ request, params }) => {
   }
     `;
 
-  const res = await RequestLoader({
+  const data = await RequestLoader({
     query,
     variables: {
       noteId: noteId,
     },
   });
 
-  const data = await res.json();
   return data;
 };
 
