@@ -14,7 +14,6 @@ function AppProvider({ children }) {
 
   useLayoutEffect(() => {
     const unSubscribe = auth.onIdTokenChanged((user) => {
-      console.log("[From AuthProvider]", { user });
       if (user?.uid) {
         setUser(user);
         if (user.accessToken !== localStorage.getItem("accessToken")) {

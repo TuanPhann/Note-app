@@ -15,7 +15,6 @@ function HomePage() {
     auth.signOut();
   };
 
-  console.log(data);
   return (
     <Stack>
       <Group>

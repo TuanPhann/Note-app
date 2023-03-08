@@ -12,7 +12,6 @@ export const FolderLoader = async () => {
     `;
 
   const data = await RequestLoader({ query });
-  console.log(data);
   return data;
 };
 

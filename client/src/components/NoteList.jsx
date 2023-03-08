@@ -22,14 +22,13 @@ import { useState } from "react";
 
 function NoteList() {
   const param = useParams();
-  const { data } = useLoaderData();
+  const data = useLoaderData();
   const [selected, setSelected] = useState(param.noteId);
   const submit = useSubmit();
   const navigate = useNavigate();
 
   const folder = data.folder.notes;
 
-  console.log(folder);
   useEffect(() => {
     if (param.noteId) {
       setSelected(param.noteId);

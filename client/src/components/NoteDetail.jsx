@@ -11,15 +11,13 @@ import { useLoaderData, useSubmit, useLocation } from "react-router-dom";
 import { debounce } from "@mui/material";
 
 function NoteDetail() {
-  const { data } = useLoaderData();
+  const data = useLoaderData();
   const note = data.note;
   const submit = useSubmit();
   const location = useLocation();
   const [editorState, setEditorState] = useState(() => {
     return EditorState.createEmpty();
   });
-
-  console.log(location.pathname);
 
   const [rawHTML, setRawHTML] = useState(note.content);
 
@@ -30,9 +28,9 @@ function NoteDetail() {
       blocksFromHTML.entityMap
     );
     setEditorState(EditorState.createWithContent(state));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [note.id]);
 
-  console.log(rawHTML);
   useEffect(() => {
     debouncedMemorized(rawHTML, note, location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps

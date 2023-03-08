@@ -22,7 +22,6 @@ export const NoteLoader = async ({ request, params }) => {
       folderId: folderId,
     },
   });
-
   return data;
 };
 
@@ -66,10 +65,8 @@ export const addNewNote = async ({ params, request }) => {
 
 export const updateNote = async ({ params, request }) => {
   const updateNote = await request.formData();
-  console.log(updateNote);
   const formDataObj = {};
   updateNote.forEach((value, key) => (formDataObj[key] = value));
-  console.log(formDataObj);
   const query = `
   mutation Mutation($id: String!, $content: String!) {
     updateNote(id: $id, content: $content) {
