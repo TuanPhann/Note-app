@@ -26,6 +26,7 @@ function NewFolder() {
   };
 
   const handleSubmit = async () => {
+    // eslint-disable-next-line no-unused-vars
     const data = await AddNewFolder({ name: value });
     handleCancel();
   };
@@ -41,7 +42,10 @@ function NewFolder() {
 
   return (
     <>
-      <div onClick={handleOpenPopup} style={{ marginRight: 100 }}>
+      <div
+        onClick={handleOpenPopup}
+        style={{ cursor: "pointer", display: "flex" }}
+      >
         <AiOutlineFolderAdd size={25} />
       </div>
 

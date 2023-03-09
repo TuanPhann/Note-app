@@ -4,7 +4,7 @@ import FolderList from "../components/FolderList";
 import { AppContext } from "../context/AppProvider";
 import { Outlet, useLoaderData } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import Notification from "../components/Notification";
+// import Notification from "../components/Notification";
 
 function HomePage() {
   const { user } = useContext(AppContext);
@@ -21,17 +21,28 @@ function HomePage() {
         <Avatar src={user.photoURL} />
         <Text>{user.displayName}</Text>
         <Button onClick={handleLogOut}>LogOut</Button>
-        <Notification />
+        {/* <Notification /> */}
       </Group>
-      <Stack>
+      <Stack style={{ alignItems: "center" }}>
         <Title style={{ textAlign: "center", marginBottom: "50px" }}>
           Note-App
         </Title>
-        <Grid>
-          <Grid.Col span={4}>
+        <Grid
+          style={{
+            padding: 15,
+            width: 1200,
+            height: 500,
+            borderRadius: 10,
+            backgroundColor: "#e0e1e1",
+          }}
+        >
+          <Grid.Col
+            span={3}
+            style={{ padding: 0, borderRadius: 10, overflow: "hidden" }}
+          >
             <FolderList listFolder={data.folders} />
           </Grid.Col>
-          <Grid.Col span={8}>
+          <Grid.Col span={9} style={{ paddingLeft: 25 }}>
             <Outlet />
           </Grid.Col>
         </Grid>

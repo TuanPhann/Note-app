@@ -55,46 +55,60 @@ function NoteList() {
   };
 
   return (
-    <Grid>
-      <Grid.Col span={4}>
-        <Stack>
-          <Group>
-            <Title>Note</Title>
-            <div onClick={handleAddNote}>
-              <AiOutlineFolderAdd />
-            </div>
-          </Group>
-          {folder.map((item, index) => (
-            <Link
-              key={index}
-              to={`note/${item.id}`}
-              style={{ textDecoration: "none" }}
-            >
-              <Card
-                p={0}
-                style={{
-                  backgroundColor: `${
-                    selected === item.id ? "#22b8cf" : "#ccc"
-                  }`,
-                  maxWidth: "300px",
-                }}
+    <Grid style={{ justifyContent: "space-between" }}>
+      <Card style={{ borderRadius: 10 }}>
+        <Grid.Col
+          span={4}
+          style={{ maxWidth: "100%", minWidth: 240, padding: 0 }}
+        >
+          <Stack>
+            <Group style={{ justifyContent: "space-between" }}>
+              <Title style={{ fontSize: 25 }}>Note</Title>
+              <div
+                onClick={handleAddNote}
+                style={{ display: "flex", cursor: "pointer" }}
               >
-                <CardSection pl={10} pr={10}>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: `${item.content.substring(0, 30) || "Empty"}`,
-                    }}
-                  />
-                  <Text>
-                    {moment(item.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}
-                  </Text>
-                </CardSection>
-              </Card>
-            </Link>
-          ))}
-        </Stack>
-      </Grid.Col>
-      <Grid.Col span={8}>
+                <AiOutlineFolderAdd size={25} />
+              </div>
+            </Group>
+            {folder.map((item, index) => (
+              <Link
+                key={index}
+                to={`note/${item.id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <Card
+                  p={0}
+                  style={{
+                    backgroundColor: `${
+                      selected === item.id ? "#efb64e" : "#ccc"
+                    }`,
+                    maxWidth: "300px",
+                  }}
+                >
+                  <CardSection pl={10} pr={10}>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: `${item.content.substring(0, 30) || "Empty"}`,
+                      }}
+                    />
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        color: "#605d5d",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {moment(item.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}
+                    </Text>
+                  </CardSection>
+                </Card>
+              </Link>
+            ))}
+          </Stack>
+        </Grid.Col>
+      </Card>
+      <Grid.Col span={8} style={{ padding: 0 }}>
         <Outlet />
       </Grid.Col>
     </Grid>
